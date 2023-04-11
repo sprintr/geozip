@@ -4,11 +4,11 @@ Helps you find zip codes in proximity to your zip code or any other zip code you
 
 Open [https://sprintr.github.io/geozip](https://sprintr.github.io/geozip) to use.
 
+![Screenshot](screenshot.png)
+
 <a href="https://www.buymeacoffee.com/aminullah" target="_blank">
 	<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174">
 </a>
-
-
 
 ## Available Scripts
 
