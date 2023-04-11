@@ -34,6 +34,7 @@ export default class SearchComponent extends React.Component<{}, {
 		this.handleSearch = this.handleSearch.bind(this);
 		this.handleChangeRadius = this.handleChangeRadius.bind(this);
 		this.handleChangeZipCode = this.handleChangeZipCode.bind(this);
+		this.handleSelectZipCode = this.handleSelectZipCode.bind(this);
 		this.handleCopyToClipboard = this.handleCopyToClipboard.bind(this);
 	}
 
@@ -41,19 +42,19 @@ export default class SearchComponent extends React.Component<{}, {
 		// Make sure we have a valid radius.
 		const radius = this.state.radius;
 		if (!radius || radius < 0 || radius > 30) {
-			return null;
+			return;
 		}
 
 		// Make sure we have a valid zip code.
 		const zipCode = this.state.zipCode;
 		if (!zipCode || !/^[0-9]{5}$/.test(zipCode)) {
-			return null;
+			return;
 		}
 
 		// Get the query feature from the map to use its coordinates for searching.
 		const query: GeoJSON.Feature<GeoJSON.Point> | undefined = featureMap.get(zipCode);
 		if (!query) {
-			return null;
+			return;
 		}
 
 		// Search neighbours in the radius around query.
@@ -78,6 +79,16 @@ export default class SearchComponent extends React.Component<{}, {
 	handleChangeZipCode(e: React.SyntheticEvent) {
 		const target = e.target as typeof e.target & { value: string, },
 			zipCode = target.value;
+		this.setState({
+			zipCode: zipCode,
+		}, () => {
+			this.handleSearch();
+		});
+	}
+
+	handleSelectZipCode(e: React.SyntheticEvent, zipCode: string) {
+		e.preventDefault();
+
 		this.setState({
 			zipCode: zipCode,
 		}, () => {
@@ -142,7 +153,11 @@ export default class SearchComponent extends React.Component<{}, {
 												{
 													this.state?.neighbours?.features?.map((feature, i) => {
 														return (
-															<li key={i} className="list-group-item">{feature?.properties?.zipCode}</li>
+															<a
+																onClick={e => this.handleSelectZipCode(e, feature?.properties?.zipCode)}
+																key={i}
+																href="#"
+																className="list-group-item list-group-item-action">{feature?.properties?.zipCode}</a>
 														);
 													})
 												}

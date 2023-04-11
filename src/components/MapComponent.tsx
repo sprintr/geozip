@@ -37,7 +37,9 @@ const FlyMeToTheMoon: FC<{
 	const map = useMap();
 	useEffect(() => {
 		if (map) {
-			map.flyTo([center.lat, center.lng], zoom);
+			map.flyTo([center.lat, center.lng], zoom, {
+				animate: true,
+			});
 		}
 	}, [center, zoom]);
 	return null;
