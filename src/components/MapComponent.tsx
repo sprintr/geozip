@@ -67,7 +67,9 @@ const MapComponent: FC<{
 			zoom={zoom}
 			scrollWheelZoom={true}
 			style={{ height: 600 }}>
-			<FlyMeToTheMoon center={center} zoom={zoom} />
+			<FlyMeToTheMoon
+				center={center}
+				zoom={zoom} />
 			<TileLayer
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 			<LayerGroup>
