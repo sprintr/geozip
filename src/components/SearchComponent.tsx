@@ -135,7 +135,7 @@ export default class SearchComponent extends React.Component<{}, {
 									</div>
 									<div className="col-md-6 col-sm-12 mb-4">
 										<div className="form-group">
-											<label htmlFor="inputZipCode">Zip Code</label>
+											<label htmlFor="inputZipCode">Zip Code:</label>
 											<input
 												id="inputZipCode"
 												className="form-control form-control-sm"
