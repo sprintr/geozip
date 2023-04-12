@@ -1,10 +1,10 @@
 # Zip Codes By Radius
 
+[![Screenshot](screenshot.png 'Screenshot')](https://sprintr.github.io/geozip/)
+
 Helps you find zip codes in proximity to your zip code or any other zip code you might have seen in paper.
 
-Open [https://sprintr.github.io/geozip](https://sprintr.github.io/geozip) to use.
-
-![Screenshot](screenshot.png)
+Open [https://sprintr.github.io/geozip/](https://sprintr.github.io/geozip/) to use.
 
 <a href="https://www.buymeacoffee.com/aminullah" target="_blank">
 	<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174">
