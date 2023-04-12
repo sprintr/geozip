@@ -145,7 +145,7 @@ export default class SearchComponent extends React.Component<{}, {
 										</div>
 									</div>
 								</div>
-								<div className="mb-2 mt-2 overflow-y-auto" style={{ maxHeight: '450px' }}>
+								<div className="overflow-y-auto" style={{ maxHeight: '470px' }}>
 									{
 										this.state.neighbours?.features?.length !== 0
 											? <ul className="list-group">
