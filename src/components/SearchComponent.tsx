@@ -109,7 +109,6 @@ export default class SearchComponent extends React.Component<{}, {
 					<div className="col-md-4 mb-2">
 						<div className="card h-100">
 							<div className="card-body">
-								<h5 className="card-title mb-4">Find Zip Codes</h5>
 								<div className="row">
 									<div className="col-md-6 col-sm-12 mb-4">
 										<div className="form-group">
@@ -146,18 +145,22 @@ export default class SearchComponent extends React.Component<{}, {
 										</div>
 									</div>
 								</div>
-								<div className="mb-2 mt-2 overflow-y-auto" style={{ maxHeight: '400px' }}>
+								<div className="mb-2 mt-2 overflow-y-auto" style={{ maxHeight: '450px' }}>
 									{
 										this.state.neighbours?.features?.length !== 0
 											? <ul className="list-group">
 												{
 													this.state?.neighbours?.features?.map((feature, i) => {
 														return (
-															<a
-																onClick={e => this.handleSelectZipCode(e, feature?.properties?.zipCode)}
+															<button
 																key={i}
-																href="#"
-																className="list-group-item list-group-item-action">{feature?.properties?.zipCode}</a>
+																className="list-group-item list-group-item-action"
+																onClick={e => this.handleSelectZipCode(e, feature?.properties?.zipCode)}
+															>
+																<span>{feature?.properties?.zipCode}</span>
+																<br />
+																<small style={{ fontSize: '0.8rem' }}>{feature?.properties?.city}, {feature?.properties?.state}</small>
+															</button>
 														);
 													})
 												}
@@ -167,7 +170,10 @@ export default class SearchComponent extends React.Component<{}, {
 								</div>
 							</div>
 							<div className="card-footer">
-								<button className="btn btn-sm btn-secondary w-100" onClick={this.handleCopyToClipboard}>Copy Zip Codes to Clipboard</button>
+								<button
+									className="btn btn-sm btn-secondary w-100"
+									onClick={this.handleCopyToClipboard}
+								>Copy Zip Codes to Clipboard</button>
 							</div>
 						</div>
 					</div>

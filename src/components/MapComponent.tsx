@@ -12,6 +12,7 @@ import {
 	useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { divIcon } from "leaflet";
 
 const zoomLevelsMap: Record<number, number> = {
 	0: 4,
@@ -41,7 +42,7 @@ const FlyMeToTheMoon: FC<{
 				animate: true,
 			});
 		}
-	}, [center, zoom]);
+	}, [center, zoom, map]);
 	return null;
 };
 
@@ -79,15 +80,23 @@ const MapComponent: FC<{
 							<Circle
 								center={center}
 								pathOptions={{
-									color: 'red',
-									fillColor: 'red',
-									stroke: true
+									color: 'green',
+									fillColor: 'green',
+									stroke: true,
+									weight: 1,
 								}}
 								radius={radius * 1609.34} />
-							<Marker position={center}>
-								<Popup autoClose={false}>
-									{query.properties.zipCode}
-								</Popup>
+							<Marker
+								position={center}
+								shadowPane=""
+								icon={divIcon({
+									html: `<div class="badge bg-danger p-1" style="font-size: 0.6rem;">
+										<span>${query?.properties?.zipCode}</span>
+										<br />
+										<span>${query?.properties?.city}, ${query?.properties?.state}</span>
+									</div>`,
+									className: '',
+								})}>
 							</Marker>
 						</>
 						: null
@@ -99,17 +108,23 @@ const MapComponent: FC<{
 						? neighbours.features.map((feature, i) => {
 							const point = feature as GeoJSON.Feature<GeoJSON.Point>;
 							return (
-								<Marker key={i} position={{ lat: point.geometry.coordinates[1], lng: point.geometry.coordinates[0] }}>
-									<Popup autoClose={false}>
-										{point?.properties?.zipCode}
-									</Popup>
+								<Marker
+									key={i}
+									position={{
+										lat: point.geometry.coordinates[1],
+										lng: point.geometry.coordinates[0],
+									}}
+									icon={divIcon({
+										html: `<span class="badge text-bg-success p-1" style="font-size: 0.6rem;">${point?.properties?.zipCode}</span>`,
+										className: '',
+									})}>
 								</Marker>
 							);
 						})
 						: null
 				}
 			</LayerGroup>
-		</MapContainer>
+		</MapContainer >
 	);
 }
 export default MapComponent;

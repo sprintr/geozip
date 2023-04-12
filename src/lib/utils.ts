@@ -36,7 +36,11 @@ export const searchNeighbours = (
 			features: [],
 		};
 	}
-	return treeIndex.search(turf.circle(query, radius, 0, 'miles'));
+	const neighbours = treeIndex.search(turf.circle(query, radius, 0, 'miles'));
+	neighbours.features = neighbours.features.filter(feature => {
+		return feature?.properties?.zipCode !== query?.properties?.zipCode;
+	});
+	return neighbours;
 }
 
 /**
