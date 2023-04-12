@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GeoZip",
+  "name": "GeoZip: Zip Codes By Radius",
   "icons": [
     {
       "src": "favicon.ico",
